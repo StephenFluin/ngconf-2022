@@ -1,0 +1,27 @@
+<p>Chain: {{ chainChanged | async }}</p>
+<p>Accounts: {{ accountsChanged | async }}</p>
+
+<select #select>
+    <option>Choose your contract ABI</option>
+    <option [value]="operatorABI">Chainlink Operator Contract</option>
+    <option [value]="counterABI" selected>Counter ABI</option>
+    <option *ngFor="let abi of manager.abis" [value]="abi.abi">{{abi.name}}</option>
+</select>
+<input type="text" name="address" #targetAddress placeholder="Contract Address" value="0xb21085EcC5a61FFE4E08958307016107aEC6fE77"/>
+<button (click)="pick(select.value, targetAddress.value)">Connect</button>
+<p *ngIf="address">Contract Address is: {{address}};</p>
+
+<section *ngIf="address && methods">
+    <p>Methods:</p>
+    <div *ngFor="let method of methods" style="margin-bottom:8px">
+        <ng-container *ngIf="method.type != 'event' && method.type != 'constructor'" >
+            <button style="color:white;padding:8px;" [style.backgroundColor]="method.stateMutability == 'view' ? 'blue' : 'red'" (click)="run(method.name, arguments)">
+            {{method.name ? method.name : 'constructor'}}
+            </button>  <!-- - {{method.stateMutability}} -->
+            {{values[method.name]}}
+            <form #arguments>
+                <input *ngFor="let arg of method.inputs" [name]="arg.name" type="text" placeholder="{{arg.name}} {{arg.type}}" />
+            </form>
+        </ng-container>
+    </div>
+</section>

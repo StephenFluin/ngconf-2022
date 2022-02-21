@@ -1,0 +1,11 @@
+<h2>Manage ABIs</h2>
+<div *ngFor="let abi of manager.abis">
+    <p>{{abi.name}}</p>
+    <p>{{abi.abi}}</p>
+</div>
+
+<form>
+    <input name="name" type="text" placeholder="name" #newAbiName/><br/>
+    <textarea name="abi" #newAbiContent></textarea><br/>
+    <button type="submit" (click)="create($event, newAbiName.value, newAbiContent.value);">Create</button>
+</form>
