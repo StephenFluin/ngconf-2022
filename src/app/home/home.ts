@@ -114,6 +114,10 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+  connect() {
+    this.ethereum
+    .request({ method: 'eth_requestAccounts' });
+  }
 
   ngOnInit(): void {}
   ngAfterViewInit() {}
