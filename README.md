@@ -1,27 +1,26 @@
 # AngularOperator
+This is a sample repo and tool created for [ng-conf 2022](https://ng-conf.org/).
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+It contains a normal angular app designed to interact with the blockchain.
 
-## Development server
+It also includes sample Solidity code for a fair Raffle using Chainlink VRF.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Check out the [Chainlink Getting Started documentation](https://docs.chain.link/docs/deploy-your-first-contract/) for more context and background help.
 
-## Code scaffolding
+## How to use this demo
+Simply run the Angular app and make sure you have a wallet and you should be able to connect to and play with the ng-conf example code.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## How to use this demo with your own contracts
+Copy the finished `FairRaffle.sol` into an IDE like [Remix](remix.ethereum.org). You could also start from the unfinished `VRFv2Consumer.sol` and build your own Raffle.
 
-## Build
+Visit [vrf.chain.link](https://vrf.chain.link) and create and fund a subscription on Fuji. Remember your subscription ID.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Replace `376` with your subscription ID in the solidity contract.
 
-## Running unit tests
+Deploy your contract to the Fuji Testnet using Remix, and then copy the contract address.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Allow your contract access to your subscription by creating a consumer with your contract address.
 
-## Running end-to-end tests
+Launch the Angular Blockchain Operator app with `ng serve` or `yarn start`, then paste in your ABI from Remix into the ABI Manager, and paste the contract address of your new ABI on the home page.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+When you click `connect`, you'll be able to interact with your smart contract based on the ABI of the contract you built.
