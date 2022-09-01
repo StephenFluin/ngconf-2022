@@ -13,7 +13,7 @@ There are lots of valid approaches and tools to building blockchain applications
 Simply run the Angular app and make sure you have a wallet and you should be able to connect to and play with the ng-conf example code.
 
 ## How to use this demo with your own contracts
-Copy the finished `FairRaffle.sol` into an IDE like [Remix](remix.ethereum.org). You could also start from the unfinished `VRFv2Consumer.sol` and build your own Raffle.
+Copy the finished `FairRaffle.sol` into an IDE like [Remix](https://remix.ethereum.org). You could also start from the unfinished `VRFv2Consumer.sol` and build your own Raffle.
 
 Visit [vrf.chain.link](https://vrf.chain.link) and create and fund a subscription on Fuji. Remember your subscription ID.
 
