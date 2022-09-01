@@ -16,7 +16,7 @@ export class AbisComponent {
 
   create(event: any, name: string, abi:string) {
     event.preventDefault();
-    this.manager.abis.push({name,abi});
+    this.manager.add({name,abi});
   }
 
 }

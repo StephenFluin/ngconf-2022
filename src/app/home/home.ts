@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
     .then((chain: string) => {
       this.chainChanged.next(parseInt(chain,16));
     });
+    this.connect();
 
   }
 
@@ -65,7 +66,7 @@ export class HomeComponent implements OnInit {
       address
     );
 
-    console.log(this.alchemySelectedContract);
+    console.log('selected Alchemy contract is',this.alchemySelectedContract);
     // this.withdrawable = new Promise((resolve, reject) => {
     //   this.selectedContract.methods
     //     .withdrawable()
@@ -83,16 +84,19 @@ export class HomeComponent implements OnInit {
   }
 
   run(methodName: string, form: any) {
+    console.log("attempting to run",methodName);
     let activation: any;
     const args = Array.from(form).map((x: any) => x.value);
 
     if (
       this.methods.find((x) => x.name == methodName).stateMutability === 'view'
     ) {
+      console.log("found a view method");
       activation = this.metamaskSelectedContract.methods[methodName](
         ...args
       ).call;
     } else {
+      console.log("didn't find a view method");
       for (let i = 0; i < args.length; i++) {
         let methodABI = this.methods.find(
           (method) => method.name === methodName
@@ -104,12 +108,14 @@ export class HomeComponent implements OnInit {
           }
         }
       }
+      console.log('about to call',methodName);
       activation = this.metamaskSelectedContract.methods[methodName](
         ...args
       ).send;
     }
+    try {
     activation(
-      { from: '0x2232BF442f759Dd6D03601192707BA25A6C17Cf1' },
+      { from: this.manager.requester },
       (err: string, result: string) => {
         console.log('run of', methodName, 'returned', result, err);
         // This promise exists so Angular Change Detection runs
@@ -117,10 +123,14 @@ export class HomeComponent implements OnInit {
         this.changeDetector.detectChanges();
       }
     );
+    } catch(err) {console.log('run failed',err)}
   }
   connect() {
-    this.ethereum
-    .request({ method: 'eth_requestAccounts' });
+    console.log(this.ethereum
+    .request({ method: 'eth_requestAccounts' })
+    .then((result: any) => {console.log('result of connect is',result);
+    this.manager.requester = result[0];
+  console.log("requester is now",result[0])}));
   }
 
   ngOnInit(): void {}

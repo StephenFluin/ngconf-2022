@@ -21,20 +21,12 @@ contract FairRaffle is VRFConsumerBaseV2 {
     uint256 public s_requestId;
     address s_owner;
 
-    // Raffle vars
-    address[] public entries;
-    address public winner;
-
     constructor() VRFConsumerBaseV2(vrfCoordinator) {
         COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
         s_owner = msg.sender;
     }
 
-    function enter() external {
-        entries.push(msg.sender);
-    }
-
-    function pickWinner() external onlyOwner {
+    function requestRandomWords() external onlyOwner {
         s_requestId = COORDINATOR.requestRandomWords(
             keyHash,
             376,
@@ -49,7 +41,6 @@ contract FairRaffle is VRFConsumerBaseV2 {
         uint256[] memory randomWords
     ) internal override {
         s_randomWords = randomWords;
-        winner = entries[randomWords[0] % entries.length];
     }
 
     modifier onlyOwner() {
