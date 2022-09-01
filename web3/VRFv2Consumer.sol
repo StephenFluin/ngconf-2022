@@ -28,11 +28,7 @@ contract FairRaffle is VRFConsumerBaseV2 {
 
     function requestRandomWords() external onlyOwner {
         s_requestId = COORDINATOR.requestRandomWords(
-            keyHash,
-            376,
-            3,
-            100000,
-            1
+            keyHash, 376, 3, 100000, 1
         );
     }
 
