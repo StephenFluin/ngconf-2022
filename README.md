@@ -1,11 +1,13 @@
 # AngularOperator
 This is a sample repo and tool created for [ng-conf 2022](https://ng-conf.org/).
 
-It contains a normal angular app designed to interact with the blockchain.
+It contains a normal Angular app designed to interact with the blockchain.
 
 It also includes sample Solidity code for a fair Raffle using Chainlink VRF.
 
-Check out the [Chainlink Getting Started documentation](https://docs.chain.link/docs/deploy-your-first-contract/) for more context and background help.
+Check out the [Chainlink Getting Started documentation](https://docs.chain.link/docs/deploy-your-first-contract/) for more context and background help. 
+
+There are lots of valid approaches and tools to building blockchain applications, and this is just one simple example built using Angular and web3.js. If you are intersted to learn more, reach out to [Stephen on Twitter](https://twitter.com/stephenfluin)!
 
 ## How to use this demo
 Simply run the Angular app and make sure you have a wallet and you should be able to connect to and play with the ng-conf example code.
