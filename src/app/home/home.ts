@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
     public manager: AbiManager,
     public changeDetector: ChangeDetectorRef
   ) {
+    if(this.ethereum) {
     this.ethereum.on('chainChanged', (chainId: string) => {this.chainChanged.next(parseInt(chainId,16));});
     this.ethereum.on('accountsChanged', (accounts: string[]) => {this.accountsChanged.next(accounts);});
 
@@ -51,7 +52,7 @@ export class HomeComponent implements OnInit {
       this.chainChanged.next(parseInt(chain,16));
     });
     this.connect();
-
+  }
   }
 
   pick(abi: string, address: string) {

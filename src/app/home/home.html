@@ -1,3 +1,5 @@
+<p *ngIf="!ethereum">You need to install a blockchain wallet, like <a href="https://metamask.io/">MetaMask</a> in order to interact with the blockchain and to try this demo.</p>
+<ng-container *ngIf="ethereum">
 <p>Currently Selected Chain: {{ chainChanged | async }}</p>
 <p>Accounts: {{ accountsChanged | async }}</p>
 <!-- <p><button (click)="connect()">Reconnect</button></p> -->
@@ -26,3 +28,4 @@
         </ng-container>
     </div>
 </section>
+</ng-container>
