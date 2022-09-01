@@ -21,7 +21,7 @@ Replace `376` with your subscription ID in the solidity contract.
 
 Deploy your contract to the Fuji Testnet using Remix, and then copy the contract address.
 
-Allow your contract access to your subscription by creating a consumer with your contract address.
+Allow your contract access to your subscription by creating a consumer for your VRF subscription on [vrf.chain.link](https://vrf.chain.link) with your contract address.
 
 Launch the Angular Blockchain Operator app with `ng serve` or `yarn start`, then paste in your ABI from Remix into the ABI Manager, and paste the contract address of your new ABI on the home page.
 
