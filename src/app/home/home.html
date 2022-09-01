@@ -3,27 +3,35 @@
 <p>Currently Selected Chain: {{ chainChanged | async }}</p>
 <p>Accounts: {{ accountsChanged | async }}</p>
 <!-- <p><button (click)="connect()">Reconnect</button></p> -->
-<select #select>
-    <option>Choose your contract ABI</option>
-    <option [value]="raffleABI" selected>ng-conf 2022 Raffle</option>
-    <option [value]="operatorABI">Chainlink Operator Contract</option>
-    <option [value]="counterABI">Counter ABI</option>
-    <option *ngFor="let abi of manager.abis" [value]="abi.abi">{{abi.name}}</option>
-</select>
-<input type="text" name="address" #targetAddress placeholder="Contract Address" value="0x651fa289f9f4a0bF97B061C2A8C2c46981485371"/>
-<button (click)="pick(select.value, targetAddress.value)">Connect</button>
+<mat-form-field>
+    <mat-label>Choose your contract ABI</mat-label>
+
+    <mat-select #select [value]="raffleABI">
+    <mat-option [value]="raffleABI">ng-conf 2022 Raffle</mat-option>
+    <mat-option [value]="operatorABI">Chainlink Operator Contract</mat-option>
+    <mat-option [value]="counterABI">Counter ABI</mat-option>
+    <mat-option *ngFor="let abi of manager.abis" [value]="abi.abi">{{abi.name}}</mat-option>
+</mat-select>
+</mat-form-field>
+<mat-form-field style="width:400px;"><mat-label>Contract Address</mat-label>
+    <input matInput type="text" name="address" #targetAddress placeholder="Contract Address" value="0x651fa289f9f4a0bF97B061C2A8C2c46981485371"/>
+</mat-form-field>
+    <button mat-raised-button color="primary" (click)="pick(select.value, targetAddress.value)">Connect</button>
 <p *ngIf="address">Contract Address is: {{address}};</p>
 
 <section *ngIf="address && methods">
     <p>Methods:</p>
     <div *ngFor="let method of methods" style="margin-bottom:8px">
         <ng-container *ngIf="method.type != 'event' && method.type != 'constructor'" >
-            <button style="color:white;padding:8px;" [style.backgroundColor]="method.stateMutability == 'view' ? 'blue' : 'red'" (click)="run(method.name, arguments)">
+            <button mat-stroked-button [color]="method.stateMutability == 'view' ? 'primary' : 'warn'" (click)="run(method.name, arguments)">
             {{method.name ? method.name : 'constructor'}}
             </button>  <!-- - {{method.stateMutability}} -->
             {{values[method.name]}}
             <form #arguments>
-                <input *ngFor="let arg of method.inputs" [name]="arg.name" type="text" placeholder="{{arg.name}} {{arg.type}}" />
+                <mat-form-field *ngFor="let arg of method.inputs">
+                    <mat-label>{{arg.name}} {{arg.type}}</mat-label>
+                    <input matInput [name]="arg.name" type="text" placeholder="{{arg.name}} {{arg.type}}" />
+                </mat-form-field>
             </form>
         </ng-container>
     </div>
