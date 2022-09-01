@@ -4,8 +4,6 @@ import { AbiManager } from '../abi-manager.service';
 @Component({
   selector: 'app-abis',
   templateUrl: './abis.component.html',
-  styles: [
-  ]
 })
 export class AbisComponent {
 

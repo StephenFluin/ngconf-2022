@@ -27,11 +27,11 @@
             {{method.name ? method.name : 'constructor'}}
             </button>  <!-- - {{method.stateMutability}} -->
             {{values[method.name]}}
-            <form #arguments>
-                <mat-form-field *ngFor="let arg of method.inputs">
+            <form #arguments (submit)="$event.preventDefault()">
+                <mat-form-field *ngFor="let arg of method.inputs" style="margin-right:5px">
                     <mat-label>{{arg.name}} {{arg.type}}</mat-label>
                     <input matInput [name]="arg.name" type="text" placeholder="{{arg.name}} {{arg.type}}" />
-                </mat-form-field>
+                </mat-form-field> 
             </form>
         </ng-container>
     </div>

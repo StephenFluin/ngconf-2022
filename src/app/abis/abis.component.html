@@ -5,7 +5,14 @@
 </div>
 
 <form>
-    <input name="name" type="text" placeholder="name" #newAbiName/><br/>
-    <textarea name="abi" #newAbiContent></textarea><br/>
-    <button type="submit" (click)="create($event, newAbiName.value, newAbiContent.value);">Create</button>
+    <mat-form-field>
+        <mat-label>New ABI Name</mat-label>
+        <input matInput name="name" type="text" placeholder="name" #newAbiName/>
+    </mat-form-field><br/>
+    <mat-form-field>
+        <mat-label>ABI Content</mat-label>
+        <textarea matInput name="abi" #newAbiContent></textarea><br/>
+
+    </mat-form-field><br/>
+    <button mat-raised-button color="primary" type="submit" (click)="create($event, newAbiName.value, newAbiContent.value);">Create</button>
 </form>
