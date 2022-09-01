@@ -3,6 +3,8 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { AbiManager } from '../abi-manager.service';
 import { CounterABI } from '../counter-abi';
 import { OperatorABI } from '../operator-abi';
+import { RaffleABI } from '../raffle-abi';
+
 declare var Web3: any;
 declare var web3: any;
 
@@ -18,8 +20,10 @@ export class HomeComponent implements OnInit {
   address: string = '';
   // = '0xAF37342e003E90DCa134A3dF76C52aeEFC4bA39d';
 
+  
   operatorABI = JSON.stringify(OperatorABI);
   counterABI = JSON.stringify(CounterABI);
+  raffleABI = JSON.stringify(RaffleABI);
 
   alchemyKovan = new Web3(
     'https://eth-kovan.alchemyapi.io/v2/UmrlTq_9a6uDS-WQ6PNQsfyvroyHixvb'

@@ -3,11 +3,12 @@
 <p><button (click)="connect()">Connect</button></p>
 <select #select>
     <option>Choose your contract ABI</option>
+    <option [value]="raffleABI" selected>ng-conf 2022 Raffle</option>
     <option [value]="operatorABI">Chainlink Operator Contract</option>
-    <option [value]="counterABI" selected>Counter ABI</option>
+    <option [value]="counterABI">Counter ABI</option>
     <option *ngFor="let abi of manager.abis" [value]="abi.abi">{{abi.name}}</option>
 </select>
-<input type="text" name="address" #targetAddress placeholder="Contract Address" value="0xb21085EcC5a61FFE4E08958307016107aEC6fE77"/>
+<input type="text" name="address" #targetAddress placeholder="Contract Address" value="0x651fa289f9f4a0bF97B061C2A8C2c46981485371"/>
 <button (click)="pick(select.value, targetAddress.value)">Connect</button>
 <p *ngIf="address">Contract Address is: {{address}};</p>
 
